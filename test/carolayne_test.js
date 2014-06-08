@@ -15,7 +15,7 @@ chai.should();
 var Carolayne = require('../lib/core/carolayne.js'),
     carolayne = new Carolayne();
 
-describe('he-man module', function() {
+describe('carolayne module', function() {
 
     describe('#constructor()', function() {
 
