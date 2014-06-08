@@ -25,7 +25,7 @@ module.exports = function(app, config) {
     util.inherits(IndexSocket, ApplicationSocket);
 
     IndexSocket.prototype.index = {
-        on: function(data) {
+        on: function() {
             //Create socket instance
             var socket = this;
             //Callback handler

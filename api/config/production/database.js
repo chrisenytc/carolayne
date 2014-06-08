@@ -9,7 +9,7 @@
 'use strict';
 
 module.exports = {
-    enabled: false,
+    enabled: true,
     uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/carolaynedb',
     sessionCollection: 'sessions'
 };

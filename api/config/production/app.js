@@ -10,7 +10,7 @@
 
 module.exports = {
     applicationName: 'Carolayne',
-        description: 'A superhero fullstack framework for node.js',
+    description: 'A superhero fullstack framework for node.js',
     url: 'http://localhost:8081',
     email: 'noreply@localhost',
     poweredBy: 'Carolayne.js',

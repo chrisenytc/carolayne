@@ -15,7 +15,7 @@
 module.exports = {
 
     /*
-     * Route => /
+     * Route => GET /
      */
 
     '/': {
@@ -25,7 +25,7 @@ module.exports = {
     },
 
     /*
-     * Route => /page
+     * Route => GET /page
      */
 
     '/page': {
