@@ -1,0 +1,10 @@
+{
+    "name": "Carolayne API",
+    "description": "Carolayne API: A superhero fullstack framework for node.js",
+    "version": "0.1.0",
+    "url": "https://github.com/chrisenytc/carolayne",
+    "options": {
+        "outdir": "./docs",
+        "paths": "./lib"
+    }
+}
