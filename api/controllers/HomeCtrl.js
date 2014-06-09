@@ -23,7 +23,7 @@ module.exports = function(app, config) {
 
     HomeController.prototype.page = function page(req, res, next) {
         //Actions here
-        return res.sendResponse(200, {welcome: 'Page called'});
+        return res.sendResponse(200, { welcome: req.t({key: 'messages.welcome'}) });
     };
 
     return HomeController;

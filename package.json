@@ -26,7 +26,7 @@
     },
     "scripts": {
         "start": "./node_modules/pm2/bin/pm2 start app.js --name carolayne",
-        "test": "gulp test",
+        "test": "make test",
         "postinstall": "./node_modules/bower/bin/bower install"
     },
     "dependencies": {
@@ -67,6 +67,7 @@
         "gulp-jsmin": "~0.1.1",
         "gulp-imagemin": "~0.1.5",
         "gulp-concat": "~2.2.0",
+        "gulp-clean": "~0.3.0",
         "jshint-stylish": "~0.1.5"
     },
     "keywords": [

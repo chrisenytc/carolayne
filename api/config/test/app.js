@@ -8,5 +8,6 @@ module.exports = {
     poweredBy: 'Carolayne.js',
     sockets: true,
     webservices: true,
-    port: process.env.PORT || 8081
+    port: process.env.PORT || 8081,
+    documentation_url: 'https://github.com/chrisenytc/carolayne#documentation'
 };

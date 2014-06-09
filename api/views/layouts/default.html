@@ -7,16 +7,54 @@
 </head>
 
 <body>
-    <section class="page-content">
-        <header class="header">
-            <p>{% block title %}{% endblock %}
-                <small>({% block description %}{% endblock %})</small>
-            </p>
-        </header>
-        <div>
-            {% block content %}{% endblock %}
+    <div id="main">
+        <div class="header">
+            <img class="pure-img-responsive" src="/assets/img/logo.png" alt="{{ appName }}">
+            <h2>{{ appDescription }}</h2>
+            <div class="pure-menu pure-menu-open pure-menu-horizontal">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/chrisenytc/carolayne#documentation" target="_blank">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/chrisenytc/carolayne" target="_blank">Code</a>
+                    </li>
+                </ul>
+            </div>
+            <h1>
+                <a href="http://badges.enytc.com/for/gh/chrisenytc/carolayne">
+                    <img src="https://badge-me.herokuapp.com/api/gh/chrisenytc/carolayne.png" alt="GH version" title="Carolayne.js Version" />
+                </a>
+            </h1>
         </div>
-    </section>
+
+        <div class="content">
+            {% block content %}{% endblock %}
+            <div class="pure-center">
+                <p>
+                    <a href="http://www.iloveopensource.io/users/chrisenytc">
+                        <img src="http://www.iloveopensource.io/images/logo-lightbg.png" alt="I Love Open Source" />
+                    </a>
+                </p>
+                <p>Made by
+                    <strong>Christopher EnyTC</strong> with
+                    <strong>love </strong> and 
+                    <strong>Carolayne.js</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://github.com/chrisenytc/carolayne">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
 {% include 'includes/footer.html' %}
 {% block scripts %}{% endblock %}
+
 </body>
+
+</html>
