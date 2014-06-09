@@ -1,0 +1,11 @@
+{
+    "name": "carolayne",
+    "version": "0.1.0",
+    "dependencies": {
+        "jquery": "~1.10.2",
+        "moment": "~2.5.1",
+        "angular": "1.2.17",
+        "angular-route": "~1.2.17",
+        "angular-resource": "~1.2.17"
+    }
+}

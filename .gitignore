@@ -1,5 +1,8 @@
 node_modules
-assets/lib
+api/assets/lib
+api/assets/css
+api/assets/js
+api/public
 .idea/
 *.log
 .DS_Store

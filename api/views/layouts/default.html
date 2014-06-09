@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% include 'includes/head.html' %}
+{% block css %}{% endblock %}
+</head>
+
+<body>
+    <section class="page-content">
+        <header class="header">
+            <p>{% block title %}{% endblock %}
+                <small>({% block description %}{% endblock %})</small>
+            </p>
+        </header>
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+    </section>
+{% include 'includes/footer.html' %}
+{% block scripts %}{% endblock %}
+</body>

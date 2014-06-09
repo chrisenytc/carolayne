@@ -1,11 +1,3 @@
-/*
- * carolayne
- * https://github.com/chrisenytc/carolayne
- *
- * Copyright (c) 2014, Christopher EnyTC
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 /*
@@ -26,12 +18,12 @@ module.exports = function(app, config) {
 
     HomeController.prototype.index = function index(req, res, next) {
         //Actions here
-        return res.jsonp({welcome: 'Hello :D', config: config});
+        return res.render('home/index');
     };
 
     HomeController.prototype.page = function page(req, res, next) {
         //Actions here
-        return res.jsonp({welcome: 'Page called'});
+        return res.sendResponse(200, {welcome: 'Page called'});
     };
 
     return HomeController;
