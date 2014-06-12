@@ -1,3 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/core/carolayne.js - Carolayne API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Carolayne API"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Carolayne.html">Carolayne</a></li>
+            
+                <li><a href="../classes/Logger.html">Logger</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/core/carolayne.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
 /*
  * carolayne
  * https://github.com/chrisenytc/carolayne
@@ -6,18 +96,18 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
+&#x27;use strict&#x27;;
 
 /*
  * Module Dependencies
  */
 
-var fs = require('fs'),
-    path = require('path'),
-    _ = require('underscore'),
-    _s = require('underscore.string'),
-    debug = require('./debugger.js'),
-    Logger = require('./logger.js'),
+var fs = require(&#x27;fs&#x27;),
+    path = require(&#x27;path&#x27;),
+    _ = require(&#x27;underscore&#x27;),
+    _s = require(&#x27;underscore.string&#x27;),
+    debug = require(&#x27;./debugger.js&#x27;),
+    Logger = require(&#x27;./logger.js&#x27;),
     join = path.resolve,
     readdir = fs.readdirSync,
     exists = fs.existsSync,
@@ -25,20 +115,20 @@ var fs = require('fs'),
     serviceStorage = {},
     modelStorage = {};
 
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    cookieParser = require('cookie-parser'),
-    session = require('express-session'),
-    logger = require('morgan'),
-    compression = require('compression'),
-    responseTime = require('response-time'),
-    mongoStore = require('connect-mongo')(session),
-    flash = require('connect-flash'),
-    cors = require('cors'),
-    swig = require('swig'),
-    livi18n = require('livi18n'),
-    mongoose = require('mongoose');
+var express = require(&#x27;express&#x27;),
+    bodyParser = require(&#x27;body-parser&#x27;),
+    methodOverride = require(&#x27;method-override&#x27;),
+    cookieParser = require(&#x27;cookie-parser&#x27;),
+    session = require(&#x27;express-session&#x27;),
+    logger = require(&#x27;morgan&#x27;),
+    compression = require(&#x27;compression&#x27;),
+    responseTime = require(&#x27;response-time&#x27;),
+    mongoStore = require(&#x27;connect-mongo&#x27;)(session),
+    flash = require(&#x27;connect-flash&#x27;),
+    cors = require(&#x27;cors&#x27;),
+    swig = require(&#x27;swig&#x27;),
+    livi18n = require(&#x27;livi18n&#x27;),
+    mongoose = require(&#x27;mongoose&#x27;);
 
 /*
  * Public Methods
@@ -59,13 +149,13 @@ var express = require('express'),
 
 var Carolayne = module.exports = function() {
     //Get version
-    this.version = require('../../package.json').version;
+    this.version = require(&#x27;../../package.json&#x27;).version;
     //Load files
     this.load = function(root, cb) {
-        var fullPath = join(__dirname, '..', '..', 'api', root);
-        var ENV = process.env.NODE_ENV || 'development';
+        var fullPath = join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, root);
+        var ENV = process.env.NODE_ENV || &#x27;development&#x27;;
         //
-        if (root === 'config') {
+        if (root === &#x27;config&#x27;) {
             var configPath = join(fullPath, ENV);
             //Read this directory
             if (exists(configPath)) {
@@ -76,14 +166,14 @@ var Carolayne = module.exports = function() {
                         //Check if this file exists
                         if (exists(filePath)) {
                             //Run callback
-                            var fileName = file.replace(/\.js$/, '');
-                            fileName = fileName.replace(/\.json$/, '');
+                            var fileName = file.replace(/\.js$/, &#x27;&#x27;);
+                            fileName = fileName.replace(/\.json$/, &#x27;&#x27;);
                             cb(filePath, fileName);
                         }
                     }
                 });
             } else {
-                console.log('ERROR: The '.red + ENV.white + ' environment not exists in api/config'.red);
+                console.log(&#x27;ERROR: The &#x27;.red + ENV.white + &#x27; environment not exists in api/config&#x27;.red);
                 process.exit(0);
             }
         } else {
@@ -95,8 +185,8 @@ var Carolayne = module.exports = function() {
                     //Check if this file exists
                     if (exists(filePath)) {
                         //Run callback
-                        var fileName = file.replace(/\.js$/, '');
-                        fileName = fileName.replace(/\.json$/, '');
+                        var fileName = file.replace(/\.js$/, &#x27;&#x27;);
+                        fileName = fileName.replace(/\.json$/, &#x27;&#x27;);
                         cb(filePath, fileName);
                     }
                 }
@@ -118,14 +208,14 @@ var Carolayne = module.exports = function() {
 
 Carolayne.prototype.loadConfigs = function loadConfigs() {
     //Load Settings
-    this.load('config', function(filePath, fileName) {
+    this.load(&#x27;config&#x27;, function(filePath, fileName) {
         //Require configs
         var config = require(filePath);
         //Set Property
         configStorage[fileName] = config;
     });
     //Debug
-    debug('Settings loaded', 'success');
+    debug(&#x27;Settings loaded&#x27;, &#x27;success&#x27;);
 };
 
 /**
@@ -141,7 +231,7 @@ Carolayne.prototype.loadConfigs = function loadConfigs() {
 
 Carolayne.prototype.loader = function loader() {
     //Load Services
-    this.load('services', function(filePath, fileName) {
+    this.load(&#x27;services&#x27;, function(filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require service
@@ -150,9 +240,9 @@ Carolayne.prototype.loader = function loader() {
         }
     });
     //Debug
-    debug('Services loaded', 'success');
+    debug(&#x27;Services loaded&#x27;, &#x27;success&#x27;);
     //Load Models
-    this.load('models', function(filePath, fileName) {
+    this.load(&#x27;models&#x27;, function(filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require Models
@@ -161,7 +251,7 @@ Carolayne.prototype.loader = function loader() {
         }
     });
     //Debug
-    debug('Models loaded', 'success');
+    debug(&#x27;Models loaded&#x27;, &#x27;success&#x27;);
 };
 
 /**
@@ -180,67 +270,67 @@ Carolayne.prototype.configureServer = function configureServer() {
     var App = express(),
         Db;
     //Set the node enviornment variable if not set before
-    process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+    process.env.NODE_ENV = process.env.NODE_ENV || &#x27;development&#x27;;
     //Database manager
     if (configStorage.database.enabled) {
         //If not connected, connect and use this connection
         mongoose.connect(configStorage.database.uri);
         Db = mongoose.connection;
         //MongoDB ErrorHandler
-        if (App.get('env') !== 'test') {
-            Db.on('error', console.error.bind(console, 'Connection error:'.red));
+        if (App.get(&#x27;env&#x27;) !== &#x27;test&#x27;) {
+            Db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;Connection error:&#x27;.red));
         }
         //MongoDB ConnnectedEvent
-        Db.on('connected', function() {
-            debug('MongoDB connected successfully', 'success');
+        Db.on(&#x27;connected&#x27;, function() {
+            debug(&#x27;MongoDB connected successfully&#x27;, &#x27;success&#x27;);
         });
         //MongoDB DisconnnectedEvent
-        Db.on('disconnected', function() {
-            debug('MongoDB disconnected', 'error');
+        Db.on(&#x27;disconnected&#x27;, function() {
+            debug(&#x27;MongoDB disconnected&#x27;, &#x27;error&#x27;);
         });
         //MongoDB autoClose
-        process.on('SIGINT', function() {
+        process.on(&#x27;SIGINT&#x27;, function() {
             mongoose.connection.close(function() {
-                debug('Mongoose disconnected through app termination', 'error');
+                debug(&#x27;Mongoose disconnected through app termination&#x27;, &#x27;error&#x27;);
                 process.exit(0);
             });
         });
     }
 
     //Logger
-    if (App.get('env') !== 'test') {
+    if (App.get(&#x27;env&#x27;) !== &#x27;test&#x27;) {
         App.use(logger(Logger));
     }
 
     //Jsonp support
-    App.enable('jsonp callback');
+    App.enable(&#x27;jsonp callback&#x27;);
 
-    App.set('showStackError', true);
+    App.set(&#x27;showStackError&#x27;, true);
 
     //Swig
     swig.setDefaults({
-        cache: 'memory'
+        cache: &#x27;memory&#x27;
     });
 
     //assign the template engine to .html files
-    //app.engine('html', consolidate[app.get('app').templateEngine]);
-    App.engine('html', swig.renderFile);
+    //app.engine(&#x27;html&#x27;, consolidate[app.get(&#x27;app&#x27;).templateEngine]);
+    App.engine(&#x27;html&#x27;, swig.renderFile);
 
     //set .html as the default extension
-    App.set('view engine', 'html');
+    App.set(&#x27;view engine&#x27;, &#x27;html&#x27;);
 
     //Set views path, template engine and default layout
-    App.set('views', path.join(__dirname, '..', '..', 'api', 'views'));
+    App.set(&#x27;views&#x27;, path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;views&#x27;));
 
     //Manage cache
-    if ('production' !== App.get('env')) {
+    if (&#x27;production&#x27; !== App.get(&#x27;env&#x27;)) {
         //Cache
-        App.set('view cache', false);
+        App.set(&#x27;view cache&#x27;, false);
     }
 
     //Static files
-    App.use('/assets', express.static(path.join(__dirname, '..', '..', 'api', 'public')));
-    App.use('/assets', express.static(path.join(__dirname, '..', '..', 'api', 'assets')));
+    App.use(&#x27;/assets&#x27;, express.static(path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;public&#x27;)));
+    App.use(&#x27;/assets&#x27;, express.static(path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;assets&#x27;)));
 
     //CookieParser
     App.use(cookieParser(configStorage.auth.sessionSecret));
@@ -272,7 +362,7 @@ Carolayne.prototype.configureServer = function configureServer() {
     //Cors
     if (corsOptions.enabled) {
         App.use(cors(corsOptions));
-        debug('CORS support enabled', 'success');
+        debug(&#x27;CORS support enabled&#x27;, &#x27;success&#x27;);
     }
 
     //User locals
@@ -288,13 +378,13 @@ Carolayne.prototype.configureServer = function configureServer() {
 
     //Powered By
     App.use(function(req, res, next) {
-        res.removeHeader('X-Powered-By');
-        res.setHeader('X-Powered-By', configStorage.app.poweredBy);
+        res.removeHeader(&#x27;X-Powered-By&#x27;);
+        res.setHeader(&#x27;X-Powered-By&#x27;, configStorage.app.poweredBy);
         next();
     });
 
     this.loadMiddlewares(App, function() {
-        debug('Middlewares loaded', 'success');
+        debug(&#x27;Middlewares loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Internationalisation (i18n)
@@ -308,10 +398,10 @@ Carolayne.prototype.configureServer = function configureServer() {
             cookieSettings: configStorage.i18n.cookieSettings,
             socket: configStorage.i18n.socket,
             serveClient: configStorage.i18n.serveClient,
-            path: path.join(__dirname, '..', '..', 'api', configStorage.i18n.path)
+            path: path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, configStorage.i18n.path)
         }));
         //Locales loaded successfully
-        debug('Locales loaded', 'success');
+        debug(&#x27;Locales loaded&#x27;, &#x27;success&#x27;);
     }
 
     //Compress
@@ -323,18 +413,18 @@ Carolayne.prototype.configureServer = function configureServer() {
     //Loader webservices
     if (configStorage.app.webservices) {
         this.loadWS(App, function() {
-            debug('WebServices loaded', 'success');
+            debug(&#x27;WebServices loaded&#x27;, &#x27;success&#x27;);
         });
     }
 
     //Loader controllers
     this.loadControllers(App, function() {
-        debug('Controllers loaded', 'success');
+        debug(&#x27;Controllers loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Loader extensions
     this.loadExtensions(App, function() {
-        debug('Extensions loaded', 'success');
+        debug(&#x27;Extensions loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Error 500 Handler
@@ -342,11 +432,11 @@ Carolayne.prototype.configureServer = function configureServer() {
         //Error message
         var error;
         //Handler
-        if (err.message === 'Validation failed') {
+        if (err.message === &#x27;Validation failed&#x27;) {
             var errorList = [];
             var errorMessages = err.errors;
             for (var e in errorMessages) {
-                errorList.push(errorMessages[e].message.replace(new RegExp('Path', 'g'), 'The'));
+                errorList.push(errorMessages[e].message.replace(new RegExp(&#x27;Path&#x27;, &#x27;g&#x27;), &#x27;The&#x27;));
             }
             error = errorList;
         } else {
@@ -356,22 +446,22 @@ Carolayne.prototype.configureServer = function configureServer() {
                 error = err.message;
             }
         }
-        var error500 = configStorage.errors['500'].message.replace(/:method/, req.method).replace(/:path/, req.url);
-        if (req.is('json')) {
+        var error500 = configStorage.errors[&#x27;500&#x27;].message.replace(/:method/, req.method).replace(/:path/, req.url);
+        if (req.is(&#x27;json&#x27;)) {
             res.sendResponse(500, {
                 msg: error500,
                 error: error,
                 documentation_url: configStorage.app.documentation_url
             });
         } else {
-            res.status(500).render('500', {
+            res.status(500).render(&#x27;500&#x27;, {
                 message: error500,
                 error: err.message || err
             });
         }
-        if ('development' === App.get('env')) {
+        if (&#x27;development&#x27; === App.get(&#x27;env&#x27;)) {
             if (!err.stack) {
-                console.error('Error => ' + err.red);
+                console.error(&#x27;Error =&gt; &#x27; + err.red);
             } else {
                 console.error(err.stack.red);
             }
@@ -380,14 +470,14 @@ Carolayne.prototype.configureServer = function configureServer() {
 
     //Error 404 Handler
     App.use(function(req, res) {
-        var error404 = configStorage.errors['404'].message.replace(/:method/, req.method).replace(/:path/, req.url);
-        if (req.is('json')) {
+        var error404 = configStorage.errors[&#x27;404&#x27;].message.replace(/:method/, req.method).replace(/:path/, req.url);
+        if (req.is(&#x27;json&#x27;)) {
             res.sendResponse(404, {
                 url: req.originalUrl,
                 error: error404
             });
         } else {
-            res.status(404).render('404', {
+            res.status(404).render(&#x27;404&#x27;, {
                 url: req.originalUrl,
                 message: error404
             });
@@ -403,7 +493,7 @@ Carolayne.prototype.configureServer = function configureServer() {
  *
  * @example
  *
- *     carolayne.getConfig('fileName');
+ *     carolayne.getConfig(&#x27;fileName&#x27;);
  *
  * @method getConfig
  * @public
@@ -424,7 +514,7 @@ Carolayne.prototype.getConfig = function getConfig(fileName) {
  *
  * @example
  *
- *     carolayne.getService('fileName');
+ *     carolayne.getService(&#x27;fileName&#x27;);
  *
  * @method getService
  * @public
@@ -445,7 +535,7 @@ Carolayne.prototype.getService = function getService(fileName) {
  *
  * @example
  *
- *     carolayne.getModel('fileName');
+ *     carolayne.getModel(&#x27;fileName&#x27;);
  *
  * @method getModel
  * @public
@@ -466,7 +556,7 @@ Carolayne.prototype.getModel = function getModel(fileName) {
  *
  * @example
  *
- *     carolayne.getLib('baseApplication');
+ *     carolayne.getLib(&#x27;baseApplication&#x27;);
  *
  * @method getLib
  * @public
@@ -475,7 +565,7 @@ Carolayne.prototype.getModel = function getModel(fileName) {
 
 Carolayne.prototype.getLib = function getLib(fileName) {
     //Load Lib
-    return require(join(__dirname, '..', fileName));
+    return require(join(__dirname, &#x27;..&#x27;, fileName));
 };
 
 /**
@@ -493,7 +583,7 @@ Carolayne.prototype.getLib = function getLib(fileName) {
 
 Carolayne.prototype.loadMiddlewares = function loadMiddlewares(App, cb) {
     //Load middlewares
-    this.load('middlewares', function(filePath) {
+    this.load(&#x27;middlewares&#x27;, function(filePath) {
         //Check if exists
         if (exists(filePath)) {
             //Require middleware
@@ -525,17 +615,17 @@ Carolayne.prototype.loadMiddlewares = function loadMiddlewares(App, cb) {
 
 Carolayne.prototype.loadWS = function loadWS(App, cb) {
     //Load webservices
-    this.load('webservices', function(filePath, fileName) {
+    this.load(&#x27;webservices&#x27;, function(filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require webservice
             var ws = require(filePath);
             //Create ws
-            App.get('/ws/' + fileName, function(req, res) {
+            App.get(&#x27;/ws/&#x27; + fileName, function(req, res) {
                 return res.jsonp(ws);
             });
             //Create ws .json
-            App.get('/ws/' + fileName + '.json', function(req, res) {
+            App.get(&#x27;/ws/&#x27; + fileName + &#x27;.json&#x27;, function(req, res) {
                 return res.jsonp(ws);
             });
 
@@ -560,7 +650,7 @@ Carolayne.prototype.loadWS = function loadWS(App, cb) {
  */
 
 Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
-    var io = require('socket.io').listen(server);
+    var io = require(&#x27;socket.io&#x27;).listen(server);
 
     //carolayne instance
     var carolayne = new Carolayne();
@@ -569,11 +659,11 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
     var loader = this;
 
     //Sockets
-    io.on('connection', function(socket) {
+    io.on(&#x27;connection&#x27;, function(socket) {
 
-        debug('Client Connected', 'success');
+        debug(&#x27;Client Connected&#x27;, &#x27;success&#x27;);
 
-        loader.load('sockets', function(filePath, fileName) {
+        loader.load(&#x27;sockets&#x27;, function(filePath, fileName) {
             //Require configs
             var sockets = require(filePath)({
                 getConfig: carolayne.getConfig,
@@ -584,17 +674,17 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
             //Load All Sockets
             _.each(sockets.prototype, function(s, key) {
                 //Handle requests
-                if (s.hasOwnProperty('on') && _.isFunction(s.on)) {
+                if (s.hasOwnProperty(&#x27;on&#x27;) &amp;&amp; _.isFunction(s.on)) {
                     socket.on(path.join(fileName, key), s.on);
                 }
-                if (s.hasOwnProperty('emit')) {
+                if (s.hasOwnProperty(&#x27;emit&#x27;)) {
                     socket.emit(path.join(fileName, key), s.emit);
                 }
             });
         });
 
-        socket.on('disconnect', function() {
-            debug('Connection closed', 'error');
+        socket.on(&#x27;disconnect&#x27;, function() {
+            debug(&#x27;Connection closed&#x27;, &#x27;error&#x27;);
         });
 
     });
@@ -621,17 +711,17 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
     var carolayne = new Carolayne();
 
     //Routes
-    var Routes = require(join(__dirname, '..', '..', 'api', 'routes.js')),
-        Policies = require(join(__dirname, '..', '..', 'api', 'policies.js')),
-        CTRLSPath = join(__dirname, '..', '..', 'api', 'controllers'),
-        PoliciesPath = join(__dirname, '..', '..', 'api', 'policies');
+    var Routes = require(join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;routes.js&#x27;)),
+        Policies = require(join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;policies.js&#x27;)),
+        CTRLSPath = join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;controllers&#x27;),
+        PoliciesPath = join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;policies&#x27;);
 
     //Load All Routes
     _.each(Routes, function(route, routePath) {
         //Handle requests
-        if (exists(join(CTRLSPath, route.controller.replace(/\.js$/, '') + '.js'))) {
+        if (exists(join(CTRLSPath, route.controller.replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;))) {
 
-            var Ctrl = require(join(CTRLSPath, route.controller.replace(/\.js$/, '') + '.js'))({
+            var Ctrl = require(join(CTRLSPath, route.controller.replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;))({
                 getConfig: carolayne.getConfig,
                 getService: carolayne.getService,
                 getModel: carolayne.getModel,
@@ -640,29 +730,29 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
             //Load actions
             _.each(Ctrl.prototype, function() {
 
-                if (Ctrl.prototype.hasOwnProperty(route.action) && _.isFunction(Ctrl.prototype[route.action])) {
+                if (Ctrl.prototype.hasOwnProperty(route.action) &amp;&amp; _.isFunction(Ctrl.prototype[route.action])) {
 
-                    if (Policies.hasOwnProperty(route.controller) && Policies[route.controller].hasOwnProperty(route.action) && _.isString(Policies[route.controller][route.action])) {
+                    if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isString(Policies[route.controller][route.action])) {
                         //Get policie
-                        var policie = require(join(PoliciesPath, Policies[route.controller][route.action].replace(/\.js$/, '') + '.js'));
+                        var policie = require(join(PoliciesPath, Policies[route.controller][route.action].replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;));
                         //Add policie
                         App[route.method.toLowerCase()](routePath, policie, Ctrl.prototype[route.action]);
 
-                    } else if (Policies.hasOwnProperty(route.controller) && Policies[route.controller].hasOwnProperty('*') && Policies[route.controller]['*']) {
+                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(&#x27;*&#x27;) &amp;&amp; Policies[route.controller][&#x27;*&#x27;]) {
                         //Add policie
                         App[route.method.toLowerCase()](routePath, Ctrl.prototype[route.action]);
 
-                    } else if (Policies.hasOwnProperty(route.controller) && Policies[route.controller].hasOwnProperty(route.action) && _.isFunction(Policies[route.controller][route.action])) {
+                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isFunction(Policies[route.controller][route.action])) {
                         //Add policie
                         App[route.method.toLowerCase()](routePath, Policies[route.controller][route.action], Ctrl.prototype[route.action]);
 
-                    } else if (Policies.hasOwnProperty(route.controller) && Policies[route.controller].hasOwnProperty(route.action) && Policies[route.controller][route.action] === true) {
+                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; Policies[route.controller][route.action] === true) {
                         //Create route
                         App[route.method.toLowerCase()](routePath, Ctrl.prototype[route.action]);
                     }
 
                 } else {
-                    debug('Have a error on loading ' + route.controller + '@' + route.action, 'error');
+                    debug(&#x27;Have a error on loading &#x27; + route.controller + &#x27;@&#x27; + route.action, &#x27;error&#x27;);
                 }
 
             });
@@ -690,7 +780,7 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
 
 Carolayne.prototype.loadExtensions = function loadExtensions(App, cb) {
     //Load Extensions
-    this.load('../lib/extensions', function(filePath) {
+    this.load(&#x27;../lib/extensions&#x27;, function(filePath) {
         //Check if exists
         if (exists(filePath)) {
             //Require extension
@@ -703,3 +793,23 @@ Carolayne.prototype.loadExtensions = function loadExtensions(App, cb) {
     //Run callback
     cb();
 };
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

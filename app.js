@@ -12,7 +12,7 @@
  * Module Dependencies
  */
 
-var Bootstrap = require('./lib/core/bootstrap.js');
+var Bootstrap = require(__dirname + '/lib/core/bootstrap.js');
 
 //Start
 Bootstrap.run();

@@ -1,9 +1,5 @@
 'use strict';
 
-/*
- * Module Dependencies
- */
-
 module.exports = function(req, res, next) {
     if(req.query.allow === 'true') {
         return next();

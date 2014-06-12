@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    applicationName: 'Carolayne - Development',
+    applicationName: 'Carolayne.js - Development',
     description: 'A superhero fullstack framework for node.js',
     url: 'http://localhost:8081',
     email: 'noreply@localhost',

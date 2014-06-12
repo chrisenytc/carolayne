@@ -1,0 +1,343 @@
+{
+    "project": {
+        "name": "Carolayne API",
+        "description": "Carolayne API: A superhero fullstack framework for node.js",
+        "version": "0.1.0",
+        "url": "https://github.com/chrisenytc/carolayne"
+    },
+    "files": {
+        "lib/core/carolayne.js": {
+            "name": "lib/core/carolayne.js",
+            "modules": {},
+            "classes": {
+                "Carolayne": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/core/logger.js": {
+            "name": "lib/core/logger.js",
+            "modules": {},
+            "classes": {
+                "Logger": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "Carolayne": {
+            "name": "Carolayne",
+            "shortname": "Carolayne",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/core/carolayne.js",
+            "line": 47,
+            "is_constructor": 1,
+            "example": [
+                "\n\n    var carolayne = new Carolayne();\n"
+            ]
+        },
+        "Logger": {
+            "name": "Logger",
+            "shortname": "Logger",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/core/logger.js",
+            "line": 18
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 108,
+            "description": "Method responsible for load configs",
+            "example": [
+                "\n\n    carolayne.loadConfigs();"
+            ],
+            "itemtype": "method",
+            "name": "loadConfigs",
+            "access": "public",
+            "tagname": "",
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 131,
+            "description": "Method responsible for load all dependencies",
+            "example": [
+                "\n\n    carolayne.loader();"
+            ],
+            "itemtype": "method",
+            "name": "loader",
+            "access": "public",
+            "tagname": "",
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 167,
+            "description": "Method responsible for configure the server",
+            "example": [
+                "\n\n    carolayne.configureServer();"
+            ],
+            "itemtype": "method",
+            "name": "configureServer",
+            "access": "public",
+            "tagname": "",
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 401,
+            "description": "Method responsible for get configs",
+            "example": [
+                "\n\n    carolayne.getConfig('fileName');"
+            ],
+            "itemtype": "method",
+            "name": "getConfig",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": "Name of config file",
+                    "type": "String"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 422,
+            "description": "Method responsible for get services",
+            "example": [
+                "\n\n    carolayne.getService('fileName');"
+            ],
+            "itemtype": "method",
+            "name": "getService",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": "Name of service file",
+                    "type": "String"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 443,
+            "description": "Method responsible for get models",
+            "example": [
+                "\n\n    carolayne.getModel('fileName');"
+            ],
+            "itemtype": "method",
+            "name": "getModel",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": "Name of model file",
+                    "type": "String"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 464,
+            "description": "Method responsible for get base",
+            "example": [
+                "\n\n    carolayne.getLib('baseApplication');"
+            ],
+            "itemtype": "method",
+            "name": "getLib",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "fileName",
+                    "description": "Name of lib file",
+                    "type": "String"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 481,
+            "description": "Method responsible for load middlewares",
+            "example": [
+                "\n\n    carolayne.loadMiddlewares(App);"
+            ],
+            "itemtype": "method",
+            "name": "loadMiddlewares",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "App",
+                    "description": "Instance of express();",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 513,
+            "description": "Method responsible for load webservices",
+            "example": [
+                "\n\n    carolayne.loadWS(App, function(){});"
+            ],
+            "itemtype": "method",
+            "name": "loadWS",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "App",
+                    "description": "Instance of express();",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 549,
+            "description": "Method responsible for loadding sockets",
+            "example": [
+                "\n\n    carolayne.loadSockets(server, function() {});"
+            ],
+            "itemtype": "method",
+            "name": "loadSockets",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "server",
+                    "description": "Instance of server",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 606,
+            "description": "Method responsible for loadding sockets",
+            "example": [
+                "\n\n    carolayne.loadSockets(App, function() {});"
+            ],
+            "itemtype": "method",
+            "name": "loadSockets",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "App",
+                    "description": "Instance of express();",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 678,
+            "description": "Method responsible for load extensions",
+            "example": [
+                "\n\n    carolayne.loadExtensions(App, function(){});"
+            ],
+            "itemtype": "method",
+            "name": "loadExtensions",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "App",
+                    "description": "Instance of express();",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/logger.js",
+            "line": 11,
+            "description": "Module Dependencies",
+            "class": "Logger"
+        },
+        {
+            "file": "lib/core/logger.js",
+            "line": 26,
+            "description": "Method responsible for manage carolayne.js logging",
+            "example": [
+                "\n\n    logger(tokens, req, res);"
+            ],
+            "itemtype": "method",
+            "name": "logger",
+            "params": [
+                {
+                    "name": "tokens",
+                    "description": "Express.logger tokens",
+                    "type": "Object"
+                },
+                {
+                    "name": "req",
+                    "description": "Middleware request",
+                    "type": "Object"
+                },
+                {
+                    "name": "res",
+                    "description": "Middleware response",
+                    "type": "Object"
+                }
+            ],
+            "class": "Logger"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nModule Dependencies",
+            "line": " lib/core/logger.js:11"
+        }
+    ]
+}
