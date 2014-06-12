@@ -108,11 +108,7 @@ gulp.task('mocha', function() {
 });
 
 // Run tests
-gulp.task('test', function() {
-    gulp.run('mocha', function() {
-        process.exit(0);
-    });
-});
+gulp.task('test', ['mocha']);
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {

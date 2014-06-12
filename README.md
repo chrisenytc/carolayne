@@ -421,6 +421,28 @@ module.exports = {
 };
 ```
 
+How to create socket extensions
+
+Example: 
+
+`lib/extensions/socket.js`
+
+```javascript
+
+module.exports = {
+    core: {
+        extends: {
+            socket: function(io) {
+                //Socket Middleware
+                io.use(function(req, next) {
+                    return next();
+                });
+            }
+        }
+    }
+};
+```
+
 ### Settings
 
 The Carolayne works with environments, you can have multiple configurations in your application.

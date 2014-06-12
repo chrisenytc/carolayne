@@ -251,7 +251,7 @@
         },
         {
             "file": "lib/core/carolayne.js",
-            "line": 606,
+            "line": 611,
             "description": "Method responsible for loadding sockets",
             "example": [
                 "\n\n    carolayne.loadSockets(App, function() {});"
@@ -276,7 +276,32 @@
         },
         {
             "file": "lib/core/carolayne.js",
-            "line": 678,
+            "line": 683,
+            "description": "Method responsible for load socket extensions",
+            "example": [
+                "\n\n    carolayne.loadSocketExtensions(io, function(){});"
+            ],
+            "itemtype": "method",
+            "name": "loadSocketExtensions",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "io",
+                    "description": "Instance of socket.io;",
+                    "type": "Object"
+                },
+                {
+                    "name": "cb",
+                    "description": "Callback",
+                    "type": "Function"
+                }
+            ],
+            "class": "Carolayne"
+        },
+        {
+            "file": "lib/core/carolayne.js",
+            "line": 714,
             "description": "Method responsible for load extensions",
             "example": [
                 "\n\n    carolayne.loadExtensions(App, function(){});"

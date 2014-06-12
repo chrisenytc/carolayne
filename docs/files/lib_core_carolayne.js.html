@@ -658,6 +658,11 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
     //Instance
     var loader = this;
 
+    //Loader extensions
+    this.loadSocketExtensions(io, function() {
+        debug(&#x27;Socket Extensions loaded&#x27;, &#x27;success&#x27;);
+    });
+
     //Sockets
     io.on(&#x27;connection&#x27;, function(socket) {
 
@@ -766,6 +771,37 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
 };
 
 /**
+ * Method responsible for load socket extensions
+ *
+ * @example
+ *
+ *     carolayne.loadSocketExtensions(io, function(){});
+ *
+ * @method loadSocketExtensions
+ * @public
+ * @param {Object} io Instance of socket.io;
+ * @param {Function} cb Callback
+ */
+
+Carolayne.prototype.loadSocketExtensions = function loadSocketExtensions(io, cb) {
+    //Load Extensions
+    this.load(&#x27;../lib/extensions&#x27;, function(filePath) {
+        //Check if exists
+        if (exists(filePath)) {
+            //Require extension
+            var ext = require(filePath);
+            //Create extension
+            if(ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; ext.core.extends.hasOwnProperty(&#x27;socket&#x27;) &amp;&amp; typeof ext.core.extends.socket === &#x27;function&#x27;) {
+                ext.core.extends.socket(io);
+            }
+        }
+    });
+
+    //Run callback
+    cb();
+};
+
+/**
  * Method responsible for load extensions
  *
  * @example
@@ -786,7 +822,9 @@ Carolayne.prototype.loadExtensions = function loadExtensions(App, cb) {
             //Require extension
             var ext = require(filePath);
             //Create extension
-            ext.core.extends(App);
+            if(ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; typeof ext.core.extends === &#x27;function&#x27;) {
+                ext.core.extends(App);
+            }
         }
     });
 

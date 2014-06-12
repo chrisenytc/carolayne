@@ -13,7 +13,7 @@ describe('carolayne module', function() {
 
         it('should be a function', function() {
 
-            carolayne.should.be.a('function');
+            Carolayne.should.be.a('function');
 
         });
     });
