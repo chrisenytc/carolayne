@@ -12,7 +12,7 @@
 git clone https://github.com/chrisenytc/carolayne.git
 ```
 
-2º Enter in he-man directory
+2º Enter in carolayne directory
 ```bash
 cd carolayne
 ```
