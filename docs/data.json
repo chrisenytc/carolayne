@@ -2,7 +2,7 @@
     "project": {
         "name": "Carolayne API",
         "description": "Carolayne API: A superhero fullstack framework for node.js",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "url": "https://github.com/chrisenytc/carolayne"
     },
     "files": {
@@ -276,7 +276,7 @@
         },
         {
             "file": "lib/core/carolayne.js",
-            "line": 683,
+            "line": 684,
             "description": "Method responsible for load socket extensions",
             "example": [
                 "\n\n    carolayne.loadSocketExtensions(io, function(){});"
@@ -301,7 +301,7 @@
         },
         {
             "file": "lib/core/carolayne.js",
-            "line": 714,
+            "line": 715,
             "description": "Method responsible for load extensions",
             "example": [
                 "\n\n    carolayne.loadExtensions(App, function(){});"

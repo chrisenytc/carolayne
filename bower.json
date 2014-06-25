@@ -1,6 +1,6 @@
 {
     "name": "carolayne",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "dependencies": {
         "jquery": "~1.10.2",
         "moment": "~2.5.1",

@@ -96,8 +96,7 @@ module.exports = {
      * Route => GET /
      */
 
-    '/': { // Route
-        method: 'get', // Http method: get, post, put and delete
+    'get /': { // Http method: get, post, put and delete with route path
         controller: 'HomeCtrl', // Name of your controller file without .js extension
         action: 'index' // name of the method of your controller
     }

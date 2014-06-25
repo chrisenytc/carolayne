@@ -6,8 +6,7 @@ module.exports = {
      * Route => GET /
      */
 
-    '/': {
-        method: 'get',
+    'get /': {
         controller: 'HomeCtrl',
         action: 'index'
     },
@@ -16,8 +15,7 @@ module.exports = {
      * Route => GET /page
      */
 
-    '/page': {
-        method: 'get',
+    'get /page': {
         controller: 'HomeCtrl',
         action: 'page'
     }
