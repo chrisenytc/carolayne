@@ -1,3 +1,7 @@
+v0.1.2:
+  date: 2014-6-26
+  changes:
+    - Optimize static file provider
 v0.1.1:
   date: 2014-6-25
   changes:

@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.1</em>
+            <em>API Docs for: 0.1.2</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -147,11 +147,11 @@ var express = require(&#x27;express&#x27;),
  *
  */
 
-var Carolayne = module.exports = function() {
+var Carolayne = module.exports = function () {
     //Get version
     this.version = require(&#x27;../../package.json&#x27;).version;
     //Load files
-    this.load = function(root, cb) {
+    this.load = function (root, cb) {
         var fullPath = join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, root);
         var ENV = process.env.NODE_ENV || &#x27;development&#x27;;
         //
@@ -159,7 +159,7 @@ var Carolayne = module.exports = function() {
             var configPath = join(fullPath, ENV);
             //Read this directory
             if (exists(configPath)) {
-                readdir(configPath).forEach(function(file) {
+                readdir(configPath).forEach(function (file) {
                     if (fs.statSync(join(configPath, file)).isFile()) {
                         //Resolve file path
                         var filePath = join(configPath, file);
@@ -178,7 +178,7 @@ var Carolayne = module.exports = function() {
             }
         } else {
             //Read this directory
-            readdir(fullPath).forEach(function(file) {
+            readdir(fullPath).forEach(function (file) {
                 if (fs.statSync(join(fullPath, file)).isFile()) {
                     //Resolve file path
                     var filePath = join(fullPath, file);
@@ -208,7 +208,7 @@ var Carolayne = module.exports = function() {
 
 Carolayne.prototype.loadConfigs = function loadConfigs() {
     //Load Settings
-    this.load(&#x27;config&#x27;, function(filePath, fileName) {
+    this.load(&#x27;config&#x27;, function (filePath, fileName) {
         //Require configs
         var config = require(filePath);
         //Set Property
@@ -231,7 +231,7 @@ Carolayne.prototype.loadConfigs = function loadConfigs() {
 
 Carolayne.prototype.loader = function loader() {
     //Load Services
-    this.load(&#x27;services&#x27;, function(filePath, fileName) {
+    this.load(&#x27;services&#x27;, function (filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require service
@@ -242,7 +242,7 @@ Carolayne.prototype.loader = function loader() {
     //Debug
     debug(&#x27;Services loaded&#x27;, &#x27;success&#x27;);
     //Load Models
-    this.load(&#x27;models&#x27;, function(filePath, fileName) {
+    this.load(&#x27;models&#x27;, function (filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require Models
@@ -281,16 +281,16 @@ Carolayne.prototype.configureServer = function configureServer() {
             Db.on(&#x27;error&#x27;, console.error.bind(console, &#x27;Connection error:&#x27;.red));
         }
         //MongoDB ConnnectedEvent
-        Db.on(&#x27;connected&#x27;, function() {
+        Db.on(&#x27;connected&#x27;, function () {
             debug(&#x27;MongoDB connected successfully&#x27;, &#x27;success&#x27;);
         });
         //MongoDB DisconnnectedEvent
-        Db.on(&#x27;disconnected&#x27;, function() {
+        Db.on(&#x27;disconnected&#x27;, function () {
             debug(&#x27;MongoDB disconnected&#x27;, &#x27;error&#x27;);
         });
         //MongoDB autoClose
-        process.on(&#x27;SIGINT&#x27;, function() {
-            mongoose.connection.close(function() {
+        process.on(&#x27;SIGINT&#x27;, function () {
+            mongoose.connection.close(function () {
                 debug(&#x27;Mongoose disconnected through app termination&#x27;, &#x27;error&#x27;);
                 process.exit(0);
             });
@@ -327,6 +327,12 @@ Carolayne.prototype.configureServer = function configureServer() {
         //Cache
         App.set(&#x27;view cache&#x27;, false);
     }
+
+    //ResponseTime
+    App.use(responseTime());
+
+    //Compress
+    App.use(compression());
 
     //Static files
     App.use(&#x27;/assets&#x27;, express.static(path.join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;public&#x27;)));
@@ -366,7 +372,7 @@ Carolayne.prototype.configureServer = function configureServer() {
     }
 
     //User locals
-    App.use(function(req, res, next) {
+    App.use(function (req, res, next) {
         req.configs = configStorage;
         res.locals.configs = configStorage;
         res.locals.appName = configStorage.app.applicationName;
@@ -377,13 +383,13 @@ Carolayne.prototype.configureServer = function configureServer() {
     });
 
     //Powered By
-    App.use(function(req, res, next) {
+    App.use(function (req, res, next) {
         res.removeHeader(&#x27;X-Powered-By&#x27;);
         res.setHeader(&#x27;X-Powered-By&#x27;, configStorage.app.poweredBy);
         next();
     });
 
-    this.loadMiddlewares(App, function() {
+    this.loadMiddlewares(App, function () {
         debug(&#x27;Middlewares loaded&#x27;, &#x27;success&#x27;);
     });
 
@@ -404,31 +410,25 @@ Carolayne.prototype.configureServer = function configureServer() {
         debug(&#x27;Locales loaded&#x27;, &#x27;success&#x27;);
     }
 
-    //Compress
-    App.use(compression());
-
-    //ResponseTime
-    App.use(responseTime());
-
     //Loader webservices
     if (configStorage.app.webservices) {
-        this.loadWS(App, function() {
+        this.loadWS(App, function () {
             debug(&#x27;WebServices loaded&#x27;, &#x27;success&#x27;);
         });
     }
 
     //Loader controllers
-    this.loadControllers(App, function() {
+    this.loadControllers(App, function () {
         debug(&#x27;Controllers loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Loader extensions
-    this.loadExtensions(App, function() {
+    this.loadExtensions(App, function () {
         debug(&#x27;Extensions loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Error 500 Handler
-    App.use(function(err, req, res, next) {
+    App.use(function (err, req, res, next) {
         //Error message
         var error;
         //Handler
@@ -469,7 +469,7 @@ Carolayne.prototype.configureServer = function configureServer() {
     });
 
     //Error 404 Handler
-    App.use(function(req, res) {
+    App.use(function (req, res) {
         var error404 = configStorage.errors[&#x27;404&#x27;].message.replace(/:method/, req.method).replace(/:path/, req.url);
         if (req.is(&#x27;json&#x27;)) {
             res.sendResponse(404, {
@@ -583,7 +583,7 @@ Carolayne.prototype.getLib = function getLib(fileName) {
 
 Carolayne.prototype.loadMiddlewares = function loadMiddlewares(App, cb) {
     //Load middlewares
-    this.load(&#x27;middlewares&#x27;, function(filePath) {
+    this.load(&#x27;middlewares&#x27;, function (filePath) {
         //Check if exists
         if (exists(filePath)) {
             //Require middleware
@@ -615,17 +615,17 @@ Carolayne.prototype.loadMiddlewares = function loadMiddlewares(App, cb) {
 
 Carolayne.prototype.loadWS = function loadWS(App, cb) {
     //Load webservices
-    this.load(&#x27;webservices&#x27;, function(filePath, fileName) {
+    this.load(&#x27;webservices&#x27;, function (filePath, fileName) {
         //Check if exists
         if (exists(filePath)) {
             //Require webservice
             var ws = require(filePath);
             //Create ws
-            App.get(&#x27;/ws/&#x27; + fileName, function(req, res) {
+            App.get(&#x27;/ws/&#x27; + fileName, function (req, res) {
                 return res.jsonp(ws);
             });
             //Create ws .json
-            App.get(&#x27;/ws/&#x27; + fileName + &#x27;.json&#x27;, function(req, res) {
+            App.get(&#x27;/ws/&#x27; + fileName + &#x27;.json&#x27;, function (req, res) {
                 return res.jsonp(ws);
             });
 
@@ -659,16 +659,16 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
     var loader = this;
 
     //Loader extensions
-    this.loadSocketExtensions(io, function() {
+    this.loadSocketExtensions(io, function () {
         debug(&#x27;Socket Extensions loaded&#x27;, &#x27;success&#x27;);
     });
 
     //Sockets
-    io.on(&#x27;connection&#x27;, function(socket) {
+    io.on(&#x27;connection&#x27;, function (socket) {
 
         debug(&#x27;Client Connected&#x27;, &#x27;success&#x27;);
 
-        loader.load(&#x27;sockets&#x27;, function(filePath, fileName) {
+        loader.load(&#x27;sockets&#x27;, function (filePath, fileName) {
             //Require configs
             var sockets = require(filePath)({
                 getConfig: carolayne.getConfig,
@@ -677,7 +677,7 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
                 getLib: carolayne.getLib
             }, carolayne.getConfig());
             //Load All Sockets
-            _.each(sockets.prototype, function(s, key) {
+            _.each(sockets.prototype, function (s, key) {
                 //Handle requests
                 if (s.hasOwnProperty(&#x27;on&#x27;) &amp;&amp; _.isFunction(s.on)) {
                     socket.on(path.join(fileName, key), s.on);
@@ -688,7 +688,7 @@ Carolayne.prototype.loadSockets = function loadSockets(server, cb) {
             });
         });
 
-        socket.on(&#x27;disconnect&#x27;, function() {
+        socket.on(&#x27;disconnect&#x27;, function () {
             debug(&#x27;Connection closed&#x27;, &#x27;error&#x27;);
         });
 
@@ -722,7 +722,7 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
         PoliciesPath = join(__dirname, &#x27;..&#x27;, &#x27;..&#x27;, &#x27;api&#x27;, &#x27;policies&#x27;);
 
     //Load All Routes
-    _.each(Routes, function(route, routePath) {
+    _.each(Routes, function (route, routePath) {
         //Handle requests
         if (exists(join(CTRLSPath, route.controller.replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;))) {
 
@@ -786,13 +786,13 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
 
 Carolayne.prototype.loadSocketExtensions = function loadSocketExtensions(io, cb) {
     //Load Extensions
-    this.load(&#x27;../lib/extensions&#x27;, function(filePath) {
+    this.load(&#x27;../lib/extensions&#x27;, function (filePath) {
         //Check if exists
         if (exists(filePath)) {
             //Require extension
             var ext = require(filePath);
             //Create extension
-            if(ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; ext.core.extends.hasOwnProperty(&#x27;socket&#x27;) &amp;&amp; typeof ext.core.extends.socket === &#x27;function&#x27;) {
+            if (ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; ext.core.extends.hasOwnProperty(&#x27;socket&#x27;) &amp;&amp; typeof ext.core.extends.socket === &#x27;function&#x27;) {
                 ext.core.extends.socket(io);
             }
         }
@@ -817,13 +817,13 @@ Carolayne.prototype.loadSocketExtensions = function loadSocketExtensions(io, cb)
 
 Carolayne.prototype.loadExtensions = function loadExtensions(App, cb) {
     //Load Extensions
-    this.load(&#x27;../lib/extensions&#x27;, function(filePath) {
+    this.load(&#x27;../lib/extensions&#x27;, function (filePath) {
         //Check if exists
         if (exists(filePath)) {
             //Require extension
             var ext = require(filePath);
             //Create extension
-            if(ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; typeof ext.core.extends === &#x27;function&#x27;) {
+            if (ext.hasOwnProperty(&#x27;core&#x27;) &amp;&amp; ext.core.hasOwnProperty(&#x27;extends&#x27;) &amp;&amp; typeof ext.core.extends === &#x27;function&#x27;) {
                 ext.core.extends(App);
             }
         }
