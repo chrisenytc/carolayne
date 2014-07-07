@@ -1,13 +1,16 @@
 //Configuration
-App.config(['$routeProvider', '$locationProvider',
-    function($routeProvider, $locationProvider) {
+App.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider) {
         'use strict';
         //Routes
-        $routeProvider
-            .when('/', {
-                controller: 'indexCtrl',
-                templateUrl: '/assets/views/index.html'
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/assets/views/index.html',
+                controller: 'indexCtrl'
             });
+        //404
+        $urlRouterProvider.otherwise('/');
         //Enable html5Mode
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');

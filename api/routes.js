@@ -18,5 +18,24 @@ module.exports = {
     'get /page': {
         controller: 'HomeCtrl',
         action: 'page'
+    },
+
+    /*
+     * Route => GET /basic
+     */
+
+    'get /basic': {
+        controller: 'BasicCtrl',
+        action: 'index'
+    },
+
+    /*
+     * Route => GET /basic/page
+     */
+
+    'get /basic/page': {
+        controller: 'BasicCtrl',
+        action: 'page'
     }
+    
 };

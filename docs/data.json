@@ -2,7 +2,7 @@
     "project": {
         "name": "Carolayne API",
         "description": "Carolayne API: A superhero fullstack framework for node.js",
-        "version": "0.1.2",
+        "version": "0.1.3",
         "url": "https://github.com/chrisenytc/carolayne"
     },
     "files": {

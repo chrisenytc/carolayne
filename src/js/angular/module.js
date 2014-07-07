@@ -1,2 +1,2 @@
 //Root Application
-window.App = angular.module('CarolayneApp', ['ngRoute', 'ngResource', 'ngLivi18n']);
+window.App = angular.module('CarolayneApp', ['ui.router', 'ngResource', 'ngLivi18n']);
