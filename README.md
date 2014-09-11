@@ -2,7 +2,7 @@
 
 > A superhero fullstack framework for node.js
 
-[![Build Status](https://secure.travis-ci.org/chrisenytc/carolayne.png?branch=master)](http://travis-ci.org/chrisenytc/carolayne) [![GH version](https://badge-me.herokuapp.com/app/gh/chrisenytc/carolayne.png)](http://badges.enytc.com/for/gh/chrisenytc/carolayne)
+[![Build Status](https://secure.travis-ci.org/chrisenytc/carolayne.png?branch=master)](http://travis-ci.org/chrisenytc/carolayne) [![GH version](https://badge-me.herokuapp.com/api/gh/chrisenytc/carolayne.png)](http://badges.enytc.com/for/gh/chrisenytc/carolayne)
 
 ## Getting Started
 
