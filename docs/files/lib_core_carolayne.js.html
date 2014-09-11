@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.3</em>
+            <em>API Docs for: 0.1.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -738,22 +738,38 @@ Carolayne.prototype.loadControllers = function loadControllers(App, cb) {
 
                 if (Ctrl.prototype.hasOwnProperty(route.action) &amp;&amp; _.isFunction(Ctrl.prototype[route.action])) {
 
-                    if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isString(Policies[route.controller][route.action])) {
+                    if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isString(Policies[route.controller][route.action]) &amp;&amp; Policies[route.controller][route.action] !== &#x27;*&#x27;) {
                         //Get policie
                         var policie = require(join(PoliciesPath, Policies[route.controller][route.action].replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;));
                         //Add policie
                         App[routePathData[0].toLowerCase()](routePathData[1], policie, Ctrl.prototype[route.action]);
 
-                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(&#x27;*&#x27;) &amp;&amp; Policies[route.controller][&#x27;*&#x27;]) {
-                        //Add policie
-                        App[routePathData[0].toLowerCase()](routePathData[1], Ctrl.prototype[route.action]);
-
                     } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isFunction(Policies[route.controller][route.action])) {
                         //Add policie
                         App[routePathData[0].toLowerCase()](routePathData[1], Policies[route.controller][route.action], Ctrl.prototype[route.action]);
 
+                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; _.isArray(Policies[route.controller][route.action])) {
+                        var PolicieList = [];
+                        //Each list
+                        _.each(Policies[route.controller][route.action], function (pv, pk) {
+                            if (_.isString(pv) &amp;&amp; pv !== &#x27;*&#x27;) {
+                                //Get policie
+                                var aPolicie = require(join(PoliciesPath, Policies[route.controller][route.action][pk].replace(/\.js$/, &#x27;&#x27;) + &#x27;.js&#x27;));
+                                PolicieList.push(aPolicie);
+                            }
+                            else if (_.isFunction(pv)) {
+                                PolicieList.push(pv);
+                            }
+                        });
+                        //Add policie
+                        App[routePathData[0].toLowerCase()](routePathData[1], PolicieList, Ctrl.prototype[route.action]);
+
                     } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(route.action) &amp;&amp; Policies[route.controller][route.action] === true) {
                         //Create route
+                        App[routePathData[0].toLowerCase()](routePathData[1], Ctrl.prototype[route.action]);
+
+                    } else if (Policies.hasOwnProperty(route.controller) &amp;&amp; Policies[route.controller].hasOwnProperty(&#x27;*&#x27;) &amp;&amp; Policies[route.controller][&#x27;*&#x27;]) {
+                        //Add policie
                         App[routePathData[0].toLowerCase()](routePathData[1], Ctrl.prototype[route.action]);
                     }
 
